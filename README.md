@@ -137,7 +137,27 @@ test/word_3.png A
 ```
 2. Modify `--select_data`, `--batch_ratio`, and `opt.character`, see [this issue](https://github.com/clovaai/deep-text-recognition-benchmark/issues/85).
 
+## Additional Section for training (Made by Justin Smith)
 
+1. Use this to create your own dataset for training.
+```
+python .\create_lmdb_dataset.py --inputPath .\data\train\ --gtFile .\data\gt.txt --outputPath result/train
+```
+This should output a structure as below.
+```
+result
+└── train
+    ├── data.mdb
+    └── lock.mdb
+```
+2. Similarly, you cacn create your own dataset for testing.
+```
+python .\create_lmdb_dataset.py --inputPath .\data\test\ --gtFile .\data\gt.txt --outputPath result/test
+```
+3. For training: 
+```
+.\train.py --train_data .\result\train\ --valid_data result/test2 --Transformation TPS --FeatureExtraction ResNet --SequenceModeling BiLSTM --Prediction Attn --workers 0 --num_iter 10000 --saved_model .\saved_models\TPS-ResNet-BiLSTM-Attn-Seed1111\best_accuracy.pth --valInterval 1000
+```
 ## Acknowledgements
 This implementation has been based on these repository [crnn.pytorch](https://github.com/meijieru/crnn.pytorch), [ocr_attention](https://github.com/marvis/ocr_attention).
 
