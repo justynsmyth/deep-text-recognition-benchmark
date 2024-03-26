@@ -150,14 +150,38 @@ result
     ├── data.mdb
     └── lock.mdb
 ```
-2. Similarly, you cacn create your own dataset for testing.
+2. Similarly, you can create your own dataset for validation (used during training) dataset, use the following command:
 ```
-python .\create_lmdb_dataset.py --inputPath .\data\test\ --gtFile .\data\gt.txt --outputPath result/test
+python .\create_lmdb_dataset.py --inputPath .\data\validation\ --gtFile .\data\gt.txt --outputPath result/validation
 ```
 3. For training: 
+--exp_name will indicate where to export the saved model under saved_models file.
 ```
 .\train.py --train_data .\result\train\ --valid_data result/test2 --Transformation TPS --FeatureExtraction ResNet --SequenceModeling BiLSTM --Prediction Attn --workers 0 --num_iter 10000 --saved_model .\saved_models\TPS-ResNet-BiLSTM-Attn-Seed1111\best_accuracy.pth --valInterval 1000
 ```
+
+## What is outputted during train.py
+An example, shown below, demonstrates the output during train.py:
+```
+[5000/10000] Train loss: 0.00001, Valid loss: 0.33697, Elapsed_time: 1106.26366
+Current_accuracy : 85.938, Current_norm_ED  : 0.95
+Best_accuracy    : 85.938, Best_norm_ED     : 0.95
+--------------------------------------------------------------------------------
+Ground Truth              | Prediction                | Confidence Score & T/F
+--------------------------------------------------------------------------------
+4oak                      | 4oak                      | 0.9999  True
+612pc                     | 612pc                     | 0.9995  True
+bnsf                      | bnsf                      | 1.0000  True
+2ds55                     | 2ds55                     | 0.9999  True
+2ds55                     | 2ds55                     | 0.9999  True
+--------------------------------------------------------------------------------
+```
+Train Loss is the model's error on the training set. This measures how well the model fits the data it is being trained on.
+
+Valid Loss is the model's error on validation set. This provides an indication of how well the model is generalizing new data.
+
+
+
 ## Acknowledgements
 This implementation has been based on these repository [crnn.pytorch](https://github.com/meijieru/crnn.pytorch), [ocr_attention](https://github.com/marvis/ocr_attention).
 
