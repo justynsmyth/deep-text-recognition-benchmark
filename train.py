@@ -5,6 +5,8 @@ import random
 import string
 import argparse
 
+
+import matplotlib.pyplot as plt
 import torch
 import torch.backends.cudnn as cudnn
 import torch.nn.init as init
@@ -18,6 +20,20 @@ from model import Model
 from test import validation
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
+print("Torch version:", torch.__version__)
+print("Is CUDA enabled?", torch.cuda.is_available())
+print('__Python VERSION:', sys.version)
+print('__pyTorch VERSION:', torch.__version__)
+print('__CUDA VERSION')
+from subprocess import call
+# call(["nvcc", "--version"]) does not work
+print('__CUDNN VERSION:', torch.backends.cudnn.version())
+print('__Number CUDA Devices:', torch.cuda.device_count())
+print('__Devices')
+print('Active CUDA Device: GPU', torch.cuda.current_device())
+
+print ('Available devices ', torch.cuda.device_count())
+print ('Current cuda device ', torch.cuda.current_device())
 
 def train(opt):
     """ dataset preparation """
@@ -142,6 +158,9 @@ def train(opt):
     best_norm_ED = -1
     iteration = start_iter
 
+    train_losses = []
+    valid_losses = []
+
     while(True):
         # train part
         image_tensors, labels = train_dataset.get_batch()
@@ -181,6 +200,9 @@ def train(opt):
                     valid_loss, current_accuracy, current_norm_ED, preds, confidence_score, labels, infer_time, length_of_data = validation(
                         model, criterion, valid_loader, converter, opt)
                 model.train()
+
+                train_losses.append(loss_avg.val().cpu().detach().numpy())
+                valid_losses.append(valid_loss.cpu().detach().numpy())
 
                 # training loss and validation loss
                 loss_log = f'[{iteration+1}/{opt.num_iter}] Train loss: {loss_avg.val():0.5f}, Valid loss: {valid_loss:0.5f}, Elapsed_time: {elapsed_time:0.5f}'
@@ -222,6 +244,14 @@ def train(opt):
 
         if (iteration + 1) == opt.num_iter:
             print('end the training')
+            plt.figure(figsize=(10, 5))
+            plt.title("Training and Validation Loss")
+            plt.plot(train_losses, label="train")
+            plt.plot(valid_losses, label="valid")
+            plt.xlabel("Iterations")
+            plt.ylabel("Loss")
+            plt.legend()
+            plt.savefig('loss_curve.png')
             sys.exit()
         iteration += 1
 
@@ -236,7 +266,7 @@ if __name__ == '__main__':
     parser.add_argument('--workers', type=int, help='number of data loading workers', default=4)
     parser.add_argument('--batch_size', type=int, default=192, help='input batch size')
     parser.add_argument('--num_iter', type=int, default=300000, help='number of iterations to train for')
-    parser.add_argument('--valInterval', type=int, default=2000, help='Interval between each validation')
+    parser.add_argument('--valInterval', type=int, default=5, help='Interval between each validation')
     parser.add_argument('--saved_model', default='', help="path to model to continue training")
     parser.add_argument('--FT', action='store_true', help='whether to do fine-tuning')
     parser.add_argument('--adam', action='store_true', help='Whether to use adam (default is Adadelta)')
@@ -304,7 +334,7 @@ if __name__ == '__main__':
     cudnn.benchmark = True
     cudnn.deterministic = True
     opt.num_gpu = torch.cuda.device_count()
-    # print('device count', opt.num_gpu)
+    print('device count', opt.num_gpu)
     if opt.num_gpu > 1:
         print('------ Use multi-GPU setting ------')
         print('if you stuck too long time with multi-GPU setting, try to set --workers 0')

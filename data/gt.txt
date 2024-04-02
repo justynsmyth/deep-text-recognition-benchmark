@@ -40,7 +40,7 @@ stack_0012_1.png	2DS45
 stack_0012_2.png	BNSF
 stack_0012_3.png	OAK
 stack_0012_5.png	2DS44
-stack_0006_0.png	2D345
+stack_0006_0.png	2DS45
 stack_0002_1.png	2DS43
 stack_0002_2.png	BNSF4mix
 stack_0002_3.png	723
@@ -127,7 +127,7 @@ stack_0048_2.png	1222
 stack_0048_3.png	610pc
 stack_0048_4.png	BNSF
 stack_0076_0.png	2DS52
-stack_0076_2.png	4M623
+stack_0076_2.png	4m623
 stack_0062_2.png	2DS51
 stack_0089_1.png	623
 stack_0089_2.png	4m623
@@ -181,7 +181,7 @@ stack_0087_1.png	623
 stack_0087_2.png	612pc
 stack_0078_0.png	2DS52
 stack_0078_2.png	623
-stack_0078_3.png	4m623
+stack_0078_3.png	4m623 n  
 stack_0050_0.png	612pc
 stack_0050_1.png	2DS50
 stack_0050_2.png	BNSF4oak
@@ -231,7 +231,7 @@ stack_0057_0.png	2DS50
 stack_0057_1.png	BNSF4oak
 stack_0043_0.png	2DS49
 stack_0043_1.png	BNSF4oak
-stack_0094_0.png	2D555
+stack_0094_0.png	2DS55
 stack_0094_1.png	BNSF
 stack_0094_2.png	DS
 stack_0094_4.png	4oak
