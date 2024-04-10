@@ -47,7 +47,7 @@ CUDA_VISIBLE_DEVICES=0 python3 demo.py \
 --saved_model TPS-ResNet-BiLSTM-Attn.pth
 ```
 
-#### prediction results
+<!-- #### prediction results
 
 | demo images | [TRBA (**T**PS-**R**esNet-**B**iLSTM-**A**ttn)](https://drive.google.com/open?id=1b59rXuGGmKne1AuHnkgDzoYgKeETNMv9) | [TRBA (case-sensitive version)](https://drive.google.com/open?id=1ajONZOgiG9pEYsQ-eBmgkVbMDuHgPCaY) |
 | ---         |     ---      |          --- |
@@ -60,7 +60,7 @@ CUDA_VISIBLE_DEVICES=0 python3 demo.py \
 | <img src="./demo_image/demo_7.png" width="300">    |   underground   |   underground  |
 | <img src="./demo_image/demo_8.jpg" width="300">      |    ronaldo    |    RONALDO   |
 | <img src="./demo_image/demo_9.jpg" width="300" height="100">    |   bally   |   BALLY  |
-| <img src="./demo_image/demo_10.jpg" width="300" height="100">      |    university    |   UNIVERSITY    |
+| <img src="./demo_image/demo_10.jpg" width="300" height="100">      |    university    |   UNIVERSITY    | -->
 
 
 ### Training and evaluation
