@@ -182,15 +182,15 @@ Valid Loss is the model's error on validation set. This provides an indication o
 
 ## demo.py and infer.py
 If you want to scan a whole directory foor images and test on a custom model, run the following line:
-'''
+```
 python demo.py --Transformation TPS --FeatureExtraction ResNet --SequenceModeling BiLSTM --Prediction Attn
 --image_folder data/ --saved_model TPS-ResNet-BiLSTM-Attn.pth --workers 0
-'''
+```
 
 To infer a single image only
-'''
+```
 python infer.py model_config.yaml <path_to_image>
-'''
+```
 
 ## How to create model_config.yaml
 After training your model, the directory will also generate an opt.txt file.
