@@ -194,7 +194,7 @@ python infer.py model_config.yaml <path_to_image>
 
 ## How to create model_config.yaml
 After training your model, the directory will also generate an opt.txt file:
-
+'''
 ------------ Options -------------
 exp_name: TPS-ResNet-BiLSTM-Attn-Seed1111
 train_data: .\result\train\
@@ -235,7 +235,7 @@ hidden_size: 256
 num_gpu: 1
 num_class: 38
 ---------------------------------------
-
+'''
 Store ONLY the options. Make sure to remove the dashed lines!
 
 ## Acknowledgements
