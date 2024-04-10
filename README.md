@@ -180,7 +180,63 @@ Train Loss is the model's error on the training set. This measures how well the 
 
 Valid Loss is the model's error on validation set. This provides an indication of how well the model is generalizing new data.
 
+## demo.py and infer.py
+If you want to scan a whole directory foor images and test on a custom model, run the following line:
+'''
+python demo.py --Transformation TPS --FeatureExtraction ResNet --SequenceModeling BiLSTM --Prediction Attn
+--image_folder data/ --saved_model TPS-ResNet-BiLSTM-Attn.pth --workers 0
+'''
 
+To infer a single image only
+'''
+python infer.py model_config.yaml <path_to_image>
+'''
+
+## How to create model_config.yaml
+After training your model, the directory will also generate an opt.txt file:
+
+------------ Options -------------
+exp_name: TPS-ResNet-BiLSTM-Attn-Seed1111
+train_data: .\result\train\
+valid_data: result/test2
+manualSeed: 1111
+workers: 0
+batch_size: 192
+num_iter: 10000
+valInterval: 1000
+saved_model: .\saved_models\TPS-ResNet-BiLSTM-Attn-Seed1111\best_accuracy.pth
+FT: False
+adam: False
+lr: 1
+beta1: 0.9
+rho: 0.95
+eps: 1e-08
+grad_clip: 5
+baiduCTC: False
+select_data: ['/']
+batch_ratio: ['1']
+total_data_usage_ratio: 1.0
+batch_max_length: 25
+imgH: 32
+imgW: 100
+rgb: False
+character: 0123456789abcdefghijklmnopqrstuvwxyz
+sensitive: False
+PAD: False
+data_filtering_off: False
+Transformation: TPS
+FeatureExtraction: ResNet
+SequenceModeling: BiLSTM
+Prediction: Attn
+num_fiducial: 20
+input_channel: 1
+output_channel: 512
+hidden_size: 256
+num_gpu: 1
+num_class: 38
+---------------------------------------
+
+Store ONLY the options. Make sure to remove the dashed lines!
 
 ## Acknowledgements
 This implementation has been based on these repository [crnn.pytorch](https://github.com/meijieru/crnn.pytorch), [ocr_attention](https://github.com/marvis/ocr_attention).
