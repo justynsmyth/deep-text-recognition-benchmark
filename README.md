@@ -193,7 +193,8 @@ python infer.py model_config.yaml <path_to_image>
 '''
 
 ## How to create model_config.yaml
-After training your model, the directory will also generate an opt.txt file:
+After training your model, the directory will also generate an opt.txt file.
+This will be your model_config.yaml that can be used for that particular model:
 
 ```yaml
 ------------ Options -------------
