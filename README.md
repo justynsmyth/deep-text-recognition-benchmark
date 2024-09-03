@@ -150,7 +150,7 @@ result
     ├── data.mdb
     └── lock.mdb
 ```
-2. Similarly, you can create your own dataset for validation (used during training) dataset, use the following command:
+2. Similarly, you can create your own dataset for validation/test (used during training for comparison) dataset, use the following command:
 ```
 python .\create_lmdb_dataset.py --inputPath .\data\validation\ --gtFile .\data\gt.txt --outputPath result/validation
 ```

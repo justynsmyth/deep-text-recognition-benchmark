@@ -1,3 +1,5 @@
+import os
+
 def generate_gt_file(output_file):
     data = [
         ("test/demo_1.png", "Available"),
@@ -31,6 +33,14 @@ def fix_lines(input_file, output_file):
             # Write the fixed line to the output file
             outfile.write(fixed_line + '\n')
 
+def generate_names(directory_path, output_file):
+    with open(output_file, 'w') as file:
+        for root, dirs, files in os.walk(directory_path):
+            for filename in files:
+                file.write(f"{filename}\n")
+
+
 if __name__ == "__main__":
     # generate_gt_file("gt.txt")
-    fix_lines("data\gt.txt", "data\gt_new.txt")
+    # fix_lines("data\gt.txt", "data\gt_new.txt")
+    generate_names(r"C:\Users\Justin\deep-text-recognition-benchmark\data\validation", "data\gt_validation.txt")
