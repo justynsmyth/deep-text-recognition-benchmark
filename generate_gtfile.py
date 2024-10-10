@@ -42,5 +42,5 @@ def generate_names(directory_path, output_file):
 
 if __name__ == "__main__":
     # generate_gt_file("gt.txt")
-    # fix_lines("data\gt.txt", "data\gt_new.txt")
-    generate_names(r"C:\Users\Justin\deep-text-recognition-benchmark\data\validation", "data\gt_validation.txt")
+    fix_lines("data\gt_validation.txt", "data\gt_new_validation.txt")
+    # generate_names(r"C:\Users\Justin\deep-text-recognition-benchmark\data\validation", "data\gt_validation.txt")
