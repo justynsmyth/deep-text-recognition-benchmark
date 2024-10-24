@@ -68,12 +68,12 @@ def demo(opt):
                 preds_str = converter.decode(preds_index, length_for_pred)
 
 
-            log = open(f'./log_demo_result.txt', 'a')
-            dashed_line = '-' * 80
-            head = f'{"image_path":25s}\t{"predicted_labels":25s}\tconfidence score'
+            log = open(f'./infer_result.txt', 'w')
+            # dashed_line = '-' * 80
+            # head = f'{"image_path":25s}\t{"predicted_labels":25s}\tconfidence score'
             
-            print(f'{dashed_line}\n{head}\n{dashed_line}')
-            log.write(f'{dashed_line}\n{head}\n{dashed_line}\n')
+            # print(f'{dashed_line}\n{head}\n{dashed_line}')
+            # log.write(f'{dashed_line}\n{head}\n{dashed_line}\n')
 
             preds_prob = F.softmax(preds, dim=2)
             preds_max_prob, _ = preds_prob.max(dim=2)
