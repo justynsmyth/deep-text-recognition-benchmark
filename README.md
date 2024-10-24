@@ -141,7 +141,10 @@ test/word_3.png A
 
 
 0. Train model from scratch using lmdb dataset
+
+```
 python train.py --train_data data_lmdb_release/training --valid_data data_lmdb_release/validation --select_data MJ-ST --batch_ratio 0.5-0.5 --Transformation TPS --FeatureExtraction ResNet --SequenceModeling BiLSTM --Prediction Attn --workers 0 --valInterval 500
+```
 
 If you want the model to differentiate between uppercase, lowercase, and incluude other common symbols, make sure to include --sensitive
 
