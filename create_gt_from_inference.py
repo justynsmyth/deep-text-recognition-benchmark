@@ -29,15 +29,15 @@ def write_gt_file(output_lines, gt_file):
         for line in output_lines:
             file.write(line)
 
-# Usage Example
+'''
+Takes an inferred file, parses, and extracts into the proper .gt format needed for training/validation
+'''
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Process inference file.")
-    parser.add_argument("inference_file", type=str, help="Path to the inference file")
+    parser.add_argument("--infer", type=str, help="Path to the inference file")
     parser.add_argument("--output", type=str, default="gt_inference.txt", help="Path to the output file (default: gt_inference.txt)")
 
     args = parser.parse_args()
 
-    inference_file = 'compare.txt'
-    output_file = 'gt.txt'
-    parse_inference_file(args.inference_file, args.output)
-    print(f"GT file created at {output_file}")
+    parse_inference_file(args.infer, args.output)
+    print(f"GT file created at {args.output}")
