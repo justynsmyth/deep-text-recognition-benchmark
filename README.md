@@ -143,6 +143,8 @@ test/word_3.png A
 0. Train model from scratch using lmdb dataset
 python train.py --train_data data_lmdb_release/training --valid_data data_lmdb_release/validation --select_data MJ-ST --batch_ratio 0.5-0.5 --Transformation TPS --FeatureExtraction ResNet --SequenceModeling BiLSTM --Prediction Attn --workers 0 --valInterval 500
 
+If you want the model to differentiate between uppercase, lowercase, and incluude other common symbols, make sure to include --sensitive
+
 1. Use this to create your own dataset for training.
 ```
 python .\create_lmdb_dataset.py --inputPath .\data\train\ --gtFile .\data\gt.txt --outputPath result/train
@@ -161,7 +163,7 @@ python .\create_lmdb_dataset.py --inputPath .\data\validation\ --gtFile .\data\g
 3. For training: 
 --exp_name will indicate where to export the saved model under saved_models file.
 ```
-python .\train.py --train_data .\result\train\ --valid_data result/test2 --Transformation TPS --FeatureExtraction ResNet --SequenceModeling BiLSTM --Prediction Attn --workers 0 --num_iter 10000 --saved_model .\saved_models\TPS-ResNet-BiLSTM-Attn-Seed1111\best_accuracy.pth --valInterval 1000
+python .\train.py --train_data .\result\train\ --valid_data result/test2 --Transformation TPS --FeatureExtraction ResNet --SequenceModeling BiLSTM --Prediction Attn --workers 0 --num_iter 10000 --saved_model .\saved_models\TPS-ResNet-BiLSTM-Attn-Seed1111\best_accuracy.pth --valInterval 1000 --sensitive
 ```
 
 ## What is outputted during train.py
