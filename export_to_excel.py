@@ -62,7 +62,7 @@ if __name__ == "__main__":
                 except ValueError:
                     print(f"Could not convert {parts[2]} to float.")
 
-    formatted_data = []
+    data_dict = {}
     label_dict = {}
 
     for stack, value in data.items():
@@ -98,14 +98,16 @@ if __name__ == "__main__":
             if label in label_dict:
                 if length > label_dict[label]:
                     label_dict[label] = length 
-                    formatted_data.append(result)
+                    data_dict[label] = result
             else:
                 label_dict[label] = length
-                formatted_data.append(result)
-            
-    for entry in formatted_data:
-        print(entry)
+                data_dict[label] = result
+     
+    formatted_data = []
 
+    for label in data_dict:
+        formatted_data.append(data_dict[label])
+    
     df_data = [[val[0] if isinstance(val, tuple) else val for val in values] for values in formatted_data]
     
     df = pd.DataFrame(df_data, columns=['TRK', 'SECT', 'ROW', 'DATE', 'XT/SWT', 'Grd/Length', 'Species', 'PIECES', 'NOTE', 'COMPANY', "IMAGE"])
