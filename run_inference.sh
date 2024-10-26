@@ -1,1 +1,1 @@
-python demo.py --sensitive --Transformation TPS --FeatureExtraction ResNet --SequenceModeling BiLSTM --Prediction Attn --image_folder test_data/ --saved_model 09-30-version1/best_accuracy.pth --workers 0 > infer_output.txt
+python demo.py --sensitive --Transformation TPS --FeatureExtraction ResNet --SequenceModeling BiLSTM --Prediction Attn --image_folder test_data/ --saved_model 09-30-version1/best_accuracy.pth --workers 0 > infer_output.txt 

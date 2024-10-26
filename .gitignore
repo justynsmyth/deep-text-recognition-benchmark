@@ -5,7 +5,7 @@
 *.mdb
 *.pth
 *.tar
-*.sh
+# *.sh
 *.ipynb
 *.zip
 *.eps
